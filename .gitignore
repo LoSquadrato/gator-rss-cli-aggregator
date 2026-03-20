@@ -6,7 +6,7 @@ secret.key
 *.tmp
 *.log
 *.bin
-gator-rss-cli-aggregator
+/gator-rss-cli-aggregator
 
 # Ignore database files
 *.db
