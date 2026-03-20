@@ -1,0 +1,13 @@
+# Ignore the secret key file
+secret.key
+
+# Ignore binary and temp files
+*.exe
+*.tmp
+*.log
+*.bin
+gator-rss-cli-aggregator
+
+# Ignore database files
+*.db
+*.sqlite
