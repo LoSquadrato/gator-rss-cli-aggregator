@@ -45,6 +45,9 @@ func main() {
 	cmds.register("users", handlerListUsers)
 	cmds.register("agg", handlerAgg)
 	cmds.register("addfeed", handlerAddFeed)
+	cmds.register("feeds", handlerListFeeds)
+	cmds.register("follow", handlerFollow)
+	cmds.register("following", handlerFollowing)
 	// ERROR if no command is provided
 	if len(os.Args) < 2 {
 		fmt.Println("error too less args in commands")

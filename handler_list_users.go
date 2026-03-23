@@ -3,7 +3,7 @@ package main
 import "context"
 
 func handlerListUsers(s *state, cmd command) error {
-	users, err := s.db.GetUsers(context.Background())
+	users, err := s.db.ListUser(context.Background())
 	if err != nil {
 		return err
 	}

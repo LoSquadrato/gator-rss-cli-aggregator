@@ -30,6 +30,15 @@ func handlerAddFeed(s *state, cmd command) error {
 	if err != nil {
 		return fmt.Errorf("error adding feed: %v\n", err)
 	}
+	err = handlerFollow(s, command{
+		name: "follow",
+		arguments: []string{
+			url,
+		},
+	})
+	if err != nil {
+		return fmt.Errorf("error following feed: %v\n", err)
+	}
 	fmt.Printf("Successfully added feed: %s (%s)\n", feed.Name, feed.Url)
 	return nil
 }

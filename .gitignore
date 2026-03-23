@@ -1,5 +1,6 @@
 # Ignore the secret key file
 secret.key
+*.txt
 
 # Ignore binary and temp files
 *.exe
