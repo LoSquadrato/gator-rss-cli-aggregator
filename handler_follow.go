@@ -9,7 +9,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func handlerFollow(s *state, cmd command) error {
+func handlerFollow(s *state, cmd command, user database.User) error {
 	url := cmd.arguments[0]
 	if url == "" {
 		return fmt.Errorf("error missing feed url")
@@ -17,10 +17,6 @@ func handlerFollow(s *state, cmd command) error {
 	feed, err := s.db.GetFeedFromUrl(context.Background(), url)
 	if err != nil {
 		return fmt.Errorf("error getting feed from url: %v", err)
-	}
-	user, err := s.db.GetUser(context.Background(), s.cfg.CurrentUserName)
-	if err != nil {
-		return fmt.Errorf("error getting user: %v", err)
 	}
 	feedFollow, err := s.db.CreateFeedFollow(context.Background(), database.CreateFeedFollowParams{
 		ID:        uuid.New(),

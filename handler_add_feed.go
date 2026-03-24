@@ -9,16 +9,12 @@ import (
 	"github.com/google/uuid"
 )
 
-func handlerAddFeed(s *state, cmd command) error {
+func handlerAddFeed(s *state, cmd command, user database.User) error {
 	if len(cmd.arguments) < 2 {
 		return fmt.Errorf("feed name and URL are required\n")
 	}
 	name := cmd.arguments[0]
 	url := cmd.arguments[1]
-	user, err := s.db.GetUser(context.Background(), s.cfg.CurrentUserName)
-	if err != nil {
-		return fmt.Errorf("error getting user: %v\n", err)
-	}
 	feed, err := s.db.AddFeed(context.Background(), database.AddFeedParams{
 		ID:        uuid.New(),
 		CreatedAt: time.Now(),
@@ -35,7 +31,7 @@ func handlerAddFeed(s *state, cmd command) error {
 		arguments: []string{
 			url,
 		},
-	})
+	}, user)
 	if err != nil {
 		return fmt.Errorf("error following feed: %v\n", err)
 	}
